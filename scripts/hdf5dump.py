@@ -12,9 +12,7 @@ import h5py
 
 def extract_listelem_struct(serial, name, data, globaltime):
     """Helper to print list elements on compound form"""
-    line = ""
-    if with_globaltime:
-        line = "%16s " % globaltime
+    line = "%16s " % globaltime if with_globaltime else ""
     line += "%16s %8s %8s %8s\n" % (data[0]['localTime_name'], serial,
                                     data[0]['channel_name'],
                                     data[0]['adcValue_name'])
@@ -22,17 +20,13 @@ def extract_listelem_struct(serial, name, data, globaltime):
 
 def extract_listelem_flat(serial, name, data, globaltime):
     """Helper to print list elements on flat array form"""
-    line = ""
-    if with_globaltime:
-        line = "%16s " % globaltime
+    line = "%16s " % globaltime if with_globaltime else ""
     line += "%16s %8s %8s %8s\n" % (data[0][0], serial, data[0][1], data[0][2])
     return line
 
 def extract_waveformelem_struct(serial, name, data, globaltime):
     """Helper to print waveform elements on compound form"""
-    line = ""
-    if with_globaltime:
-        line = "%16s " % globaltime
+    line = "%16s " % globaltime if with_globaltime else ""
     line += "%16s %8s %8s %s\n" % (data[0]['localTime_name'], serial,
                                    data[0]['channel_name'],
                                    ' '.join(data[0]['waveform_name']))
